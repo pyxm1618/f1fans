@@ -1,6 +1,6 @@
-import { aggregateVoteTotals, VOTE_OPTIONS } from './_feishu.js';
+const { aggregateVoteTotals, VOTE_OPTIONS } = require('./_feishu.js');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -29,4 +29,4 @@ export default async function handler(req, res) {
     console.error('获取投票数据失败:', error.message);
     res.status(500).json({ error: '无法获取投票统计，请稍后再试' });
   }
-}
+};
