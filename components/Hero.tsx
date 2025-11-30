@@ -68,7 +68,7 @@ const Hero: React.FC<HeroProps> = ({ setTab }) => {
           transition={{ delay: 0.5 }}
           className="text-slate-300 text-lg md:text-2xl max-w-3xl mx-auto font-light leading-relaxed backdrop-blur-sm bg-black/20 p-4 rounded-xl border border-white/5"
         >
-           F1 从组建中国首支F1车队到全网围观的“飞哥洗澡赌约”
+           从组建中国首支F1车队到全网围观的“飞哥洗澡赌约”
            <br className="hidden md:block"/>
            这里定义新一代赛车体验。
         </motion.p>

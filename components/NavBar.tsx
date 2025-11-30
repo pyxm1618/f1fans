@@ -14,7 +14,7 @@ const NavBar: React.FC<NavBarProps> = ({ currentTab, setTab }) => {
     { id: Tab.SHOWER_BET, label: '洗澡赌约', icon: Bath, highlight: true },
     { id: Tab.NEW_TEAM, label: '凤凰计划', icon: Flame },
     { id: Tab.STANDINGS, label: '积分榜', icon: Trophy },
-    { id: Tab.SCHEDULE, label: '赛程', icon: Calendar },
+    // { id: Tab.SCHEDULE, label: '赛程', icon: Calendar },  // 暂时隐藏
   ];
 
   return (
