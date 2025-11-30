@@ -458,15 +458,15 @@ const YeFeiShowerBet: React.FC = () => {
             <ShowerGame />
         </div>
 
-        {/* Share Bar */}
-        <div className="max-w-md mx-auto mt-12 flex justify-center gap-4">
+        {/* Share Bar - Temporarily hidden */}
+        {/* <div className="max-w-md mx-auto mt-12 flex justify-center gap-4">
             <button className="flex items-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-slate-200 transition-colors">
                 <Share2 size={18} /> 分享赌约
             </button>
             <button className="flex items-center gap-2 px-6 py-3 bg-[#1DB954] text-white font-bold rounded-full hover:bg-[#1ed760] transition-colors">
                 <Zap size={18} /> 生成海报
             </button>
-        </div>
+        </div> */}
       </section>
 
     </div>
