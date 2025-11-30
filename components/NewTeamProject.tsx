@@ -140,7 +140,7 @@ const NewTeamProject: React.FC = () => {
                 <div className="max-w-4xl mx-auto bg-black/60 border border-emerald-500/20 rounded-3xl p-4 backdrop-blur-lg shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
                     <div className="rounded-2xl overflow-hidden ring-1 ring-white/10">
                         <iframe
-                            src="//player.bilibili.com/player.html?bvid=BV_REPLACE_ME&page=1&autoplay=0"
+                            src="//player.bilibili.com/player.html?bvid=BV1MdSqB5EKD&page=1&autoplay=0&muted=0&high_quality=1&danmaku=0"
                             className="w-full aspect-video"
                             scrolling="no"
                             style={{ border: 0 }}
