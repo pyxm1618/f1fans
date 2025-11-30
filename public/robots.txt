@@ -1,0 +1,15 @@
+# robots.txt for f1fans.cn
+User-agent: *
+Allow: /
+
+# 允许百度爬虫
+User-agent: Baiduspider
+Allow: /
+
+# 不允许爬取的路径
+Disallow: /api/
+Disallow: /server/
+Disallow: /*.json$
+
+# Sitemap 位置
+Sitemap: https://f1fans.cn/sitemap.xml
