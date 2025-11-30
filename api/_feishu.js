@@ -2,16 +2,16 @@ const FEISHU_BASE_URL = 'https://open.feishu.cn/open-apis';
 
 let tokenCache = { token: null, expiresAt: 0 };
 
-const VOTE_OPTIONS = [
+export const VOTE_OPTIONS = [
   { id: 1, label: '小黄鸭泡泡浴', color: 'bg-yellow-500' },
   { id: 2, label: '零下10度冰桶挑战', color: 'bg-cyan-500' },
   { id: 3, label: '消防高压水枪', color: 'bg-red-500' },
   { id: 4, label: '搓澡巾 + 红酒浴', color: 'bg-purple-500' }
 ];
 
-const voteOptionMap = new Map(VOTE_OPTIONS.map((opt) => [opt.id.toString(), opt]));
+export const voteOptionMap = new Map(VOTE_OPTIONS.map((opt) => [opt.id.toString(), opt]));
 
-async function getTenantAccessToken() {
+export async function getTenantAccessToken() {
   const { FEISHU_APP_ID, FEISHU_APP_SECRET } = process.env;
   
   if (!FEISHU_APP_ID || !FEISHU_APP_SECRET) {
@@ -45,7 +45,7 @@ async function getTenantAccessToken() {
   return tokenCache.token;
 }
 
-async function feishuRequest(path, { method = 'GET', body } = {}) {
+export async function feishuRequest(path, { method = 'GET', body } = {}) {
   const token = await getTenantAccessToken();
   const response = await fetch(`${FEISHU_BASE_URL}${path}`, {
     method,
@@ -64,7 +64,7 @@ async function feishuRequest(path, { method = 'GET', body } = {}) {
   return result.data;
 }
 
-async function createRecord(tableId, fields) {
+export async function createRecord(tableId, fields) {
   const { FEISHU_BITABLE_APP_TOKEN } = process.env;
   
   if (!FEISHU_BITABLE_APP_TOKEN) {
@@ -77,7 +77,7 @@ async function createRecord(tableId, fields) {
   });
 }
 
-async function listVoteRecords(tableId, pageToken) {
+export async function listVoteRecords(tableId, pageToken) {
   const { FEISHU_BITABLE_APP_TOKEN } = process.env;
   
   if (!FEISHU_BITABLE_APP_TOKEN) {
@@ -90,7 +90,7 @@ async function listVoteRecords(tableId, pageToken) {
   return feishuRequest(`/bitable/v1/apps/${FEISHU_BITABLE_APP_TOKEN}/tables/${tableId}/records?${query.toString()}`);
 }
 
-async function aggregateVoteTotals(tableId) {
+export async function aggregateVoteTotals(tableId) {
   const totals = {};
   let pageToken;
 
@@ -107,13 +107,3 @@ async function aggregateVoteTotals(tableId) {
 
   return totals;
 }
-
-module.exports = {
-  VOTE_OPTIONS,
-  voteOptionMap,
-  getTenantAccessToken,
-  feishuRequest,
-  createRecord,
-  listVoteRecords,
-  aggregateVoteTotals
-};

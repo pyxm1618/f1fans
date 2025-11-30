@@ -1,6 +1,6 @@
-const { createRecord } = require('./_feishu.js');
+import { createRecord } from './_feishu.js';
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   // 设置 CORS 头
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -71,4 +71,4 @@ module.exports = async function handler(req, res) {
       details: error.message 
     });
   }
-};
+}
