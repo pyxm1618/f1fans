@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Target, CheckCircle2, Users, Handshake, Zap, Building2, Briefcase, X, Send, QrCode, Cpu, Wind, Timer, AlertTriangle, Crown, Sparkles, ScanLine, ChevronRight } from 'lucide-react';
 
@@ -13,6 +13,15 @@ const NewTeamProject: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [recruitCount, setRecruitCount] = useState(12408);
+
+  useEffect(() => {
+    // 获取招募申请数量
+    fetch('/api/recruit-count')
+      .then(res => res.json())
+      .then(data => setRecruitCount(data.count || 12408))
+      .catch(() => setRecruitCount(12408));
+  }, []);
 
   const handleApply = (role?: string) => {
     if (role) setFormState(prev => ({ ...prev, role }));
@@ -40,6 +49,8 @@ const NewTeamProject: React.FC = () => {
 
       setSubmitSuccess(true);
       setFormState({ name: '', role: '', contact: '' });
+      // 更新招募数量
+      setRecruitCount(prev => prev + 1);
     } catch (err) {
       const message = err instanceof Error ? err.message : '提交失败，请稍后再试';
       setSubmitError(message);
@@ -213,7 +224,7 @@ const NewTeamProject: React.FC = () => {
                     </p>
                 </div>
                 <div className="hidden md:block text-right">
-                    <div className="text-emerald-500 font-mono text-3xl font-bold">12,408</div>
+                    <div className="text-emerald-500 font-mono text-3xl font-bold">{recruitCount.toLocaleString()}</div>
                     <div className="text-slate-600 text-xs uppercase tracking-widest">已收到申请</div>
                 </div>
             </div>

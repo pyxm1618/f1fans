@@ -418,7 +418,7 @@ const YeFeiShowerBet: React.FC = () => {
                 <div className="bg-black rounded-xl overflow-hidden shadow-2xl border border-slate-700 aspect-video relative group">
                     {/* Bilibili Iframe */}
                     <iframe 
-                        src="//player.bilibili.com/player.html?bvid=BV1hasmzPEg7&page=1&t=4040&high_quality=1&danmaku=0" 
+                        src="//player.bilibili.com/player.html?bvid=BV1hasmzPEg7&page=1&t=4040&high_quality=1&danmaku=0&muted=0" 
                         allowFullScreen={true}
                         width="100%" 
                         height="100%"
