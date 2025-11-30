@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Target, CheckCircle2, Users, Handshake, Zap, Building2, Briefcase, X, Send, QrCode, Cpu, Wind, Timer, AlertTriangle, Crown, Sparkles, ScanLine, ChevronRight } from 'lucide-react';
 
 const fhVideoSrc = new URL('../FH-1.mp4', import.meta.url).href;
-const sponsorQrSrc = new URL('../QR.jpg', import.meta.url).href;
+const sponsorQrSrc = new URL('../QR_personal.jpg', import.meta.url).href;
+const groupQrSrc = new URL('../QR.jpg', import.meta.url).href;
 
 const NewTeamProject: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -301,8 +302,8 @@ const NewTeamProject: React.FC = () => {
 
                  <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                    <div className="relative w-48 h-48 bg-white rounded-lg flex items-center justify-center p-2 shadow-2xl">
-                         <QrCode className="text-black w-full h-full" strokeWidth={1.5} />
+                    <div className="relative w-48 h-48 bg-white rounded-lg flex items-center justify-center p-2 shadow-2xl overflow-hidden">
+                         <img src={groupQrSrc} alt="凤凰计划群聊二维码" className="w-full h-full object-cover" />
                          {/* Scan Line Overlay */}
                          <div className="absolute top-0 w-full h-1 bg-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.5)] animate-[scan_2s_linear_infinite]"></div>
                     </div>
