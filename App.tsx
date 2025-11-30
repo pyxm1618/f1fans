@@ -7,8 +7,6 @@ import Standings from './components/Standings';
 import YeFeiShowerBet from './components/YeFeiShowerBet';
 import NewTeamProject from './components/NewTeamProject';
 import Schedule from './components/Schedule';
-import Game1 from './components/Game1';
-import Game2 from './components/Game2';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const App: React.FC = () => {
@@ -24,10 +22,6 @@ const App: React.FC = () => {
         return <NewTeamProject />;
       case Tab.SHOWER_BET:
         return <YeFeiShowerBet />;
-      case Tab.GAME1:
-        return <Game1 />;
-      case Tab.GAME2:
-        return <Game2 />;
       case Tab.HOME:
       default:
         return <Hero setTab={setCurrentTab} />;
