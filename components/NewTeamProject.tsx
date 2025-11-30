@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Target, CheckCircle2, Users, Handshake, Zap, Building2, Briefcase, X, Send, QrCode, Cpu, Wind, Timer, AlertTriangle, Crown, Sparkles, ScanLine, ChevronRight } from 'lucide-react';
 
-const fhVideoSrc = new URL('../FH-1.mp4', import.meta.url).href;
+// const fhVideoSrc = new URL('../FH-1.mp4', import.meta.url).href;
 const sponsorQrSrc = new URL('../QR_personal.jpg', import.meta.url).href;
 const groupQrSrc = new URL('../QR.jpg', import.meta.url).href;
 
@@ -139,15 +139,14 @@ const NewTeamProject: React.FC = () => {
             <div className="mt-6 md:-mt-2 px-4">
                 <div className="max-w-4xl mx-auto bg-black/60 border border-emerald-500/20 rounded-3xl p-4 backdrop-blur-lg shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
                     <div className="rounded-2xl overflow-hidden ring-1 ring-white/10">
-                        <video
-                            src={fhVideoSrc}
-                            className="w-full h-full"
-                            controls
-                            loop
-                            playsInline
-                        >
-                            您的浏览器不支持视频标签。
-                        </video>
+                        <iframe
+                            src="//player.bilibili.com/player.html?bvid=BV_REPLACE_ME&page=1&autoplay=0"
+                            className="w-full aspect-video"
+                            scrolling="no"
+                            style={{ border: 0 }}
+                            frameBorder="0"
+                            allowFullScreen
+                        />
                     </div>
                 </div>
             </div>
