@@ -1,4 +1,4 @@
-import { aggregateVoteTotals, VOTE_OPTIONS } from './_feishu.js';
+import { aggregateVoteTotalsForVoteApp, VOTE_OPTIONS } from './_feishu.js';
 
 export default async function handler(req, res) {
   // 设置 CORS 头
@@ -17,38 +17,35 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 详细的环境变量检查
-    const { FEISHU_APP_ID, FEISHU_APP_SECRET, FEISHU_BITABLE_APP_TOKEN, FEISHU_VOTE_TABLE_ID, FEISHU_RECRUIT_TABLE_ID } = process.env;
+    // 详细的环境变量检查（使用投票应用专用配置）
+    const { FEISHU_VOTE_APP_ID, FEISHU_VOTE_APP_SECRET, FEISHU_VOTE_BITABLE_APP_TOKEN, FEISHU_VOTE_TABLE_ID } = process.env;
     
     console.log('获取投票API - 环境变量检查:', {
-      hasAppId: !!FEISHU_APP_ID,
-      hasAppSecret: !!FEISHU_APP_SECRET,
-      hasBitableToken: !!FEISHU_BITABLE_APP_TOKEN,
-      hasVoteTableId: !!FEISHU_VOTE_TABLE_ID,
-      hasRecruitTableId: !!FEISHU_RECRUIT_TABLE_ID
+      hasVoteAppId: !!FEISHU_VOTE_APP_ID,
+      hasVoteAppSecret: !!FEISHU_VOTE_APP_SECRET,
+      hasVoteBitableToken: !!FEISHU_VOTE_BITABLE_APP_TOKEN,
+      hasVoteTableId: !!FEISHU_VOTE_TABLE_ID
     });
     
-    if (!FEISHU_APP_ID || !FEISHU_APP_SECRET) {
-      console.error('缺少飞书应用凭证');
-      return res.status(500).json({ error: '服务器配置错误：缺少飞书应用凭证' });
+    if (!FEISHU_VOTE_APP_ID || !FEISHU_VOTE_APP_SECRET) {
+      console.error('缺少投票应用凭证');
+      return res.status(500).json({ error: '服务器配置错误：缺少投票应用凭证' });
     }
     
-    if (!FEISHU_BITABLE_APP_TOKEN) {
-      console.error('缺少飞书多维表格 Token');
-      return res.status(500).json({ error: '服务器配置错误：缺少多维表格 Token' });
+    if (!FEISHU_VOTE_BITABLE_APP_TOKEN) {
+      console.error('缺少投票应用多维表格 Token');
+      return res.status(500).json({ error: '服务器配置错误：缺少投票应用多维表格 Token' });
     }
-
-    const VOTE_TABLE_ID = FEISHU_VOTE_TABLE_ID || FEISHU_RECRUIT_TABLE_ID;
     
-    if (!VOTE_TABLE_ID) {
+    if (!FEISHU_VOTE_TABLE_ID) {
       console.error('缺少投票表格 ID');
       return res.status(500).json({ error: '服务器配置错误：缺少投票表格 ID' });
     }
 
-    console.log('使用投票表格 ID:', VOTE_TABLE_ID);
+    console.log('使用投票表格 ID:', FEISHU_VOTE_TABLE_ID);
     console.log('开始获取投票统计...');
 
-    const totals = await aggregateVoteTotals(VOTE_TABLE_ID);
+    const totals = await aggregateVoteTotalsForVoteApp(FEISHU_VOTE_TABLE_ID);
     
     console.log('投票统计获取成功:', totals);
     res.status(200).json({ totals, options: VOTE_OPTIONS });
