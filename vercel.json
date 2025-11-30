@@ -10,7 +10,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!api/.*).*)",
+      "source": "/((?!api/.*|baidu_verify.*).*)",
       "destination": "/index.html"
     }
   ]
