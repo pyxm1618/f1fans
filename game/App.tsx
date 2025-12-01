@@ -82,71 +82,164 @@ export default function App() {
   );
 
   const renderLevelSelect = () => (
-    <div className="min-h-screen bg-slate-900 relative flex flex-col items-center overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-amber-100 to-amber-50 relative flex items-center justify-center overflow-hidden">
+        {/* 卷轴背景装饰 */}
+        <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzg4ODg4OCIgc3Ryb2tlLXdpZHRoPSIwLjUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')]"></div>
+        
         {/* Header */}
-        <div className="fixed top-0 left-0 right-0 z-20 bg-slate-900/90 backdrop-blur p-4 border-b border-white/10 flex items-center justify-between shadow-lg">
-            <button onClick={() => setScreen(AppScreen.MENU)} className="text-white/70 hover:text-white">⬅ Menu</button>
-            <h2 className="text-xl font-racing text-orange-400">2025 SEASON MAP</h2>
-            <div className="w-12"></div>
+        <div className="fixed top-0 left-0 right-0 z-30 bg-gradient-to-b from-slate-900/95 to-slate-900/80 backdrop-blur-md p-4 border-b-2 border-orange-500/30 flex items-center justify-between shadow-2xl">
+            <button onClick={() => setScreen(AppScreen.MENU)} className="text-white/70 hover:text-white transition-colors flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10">
+                <span>⬅</span> <span className="font-bold">主菜单</span>
+            </button>
+            <h2 className="text-2xl font-racing text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-300 to-orange-500">2025 赛季征程</h2>
+            <div className="text-sm text-white/50 font-mono px-3 py-2 bg-black/20 rounded-lg">
+                {unlockedLevelId}/{LEVELS.length}
+            </div>
         </div>
 
-        {/* Map Container */}
-        <div className="w-full max-w-md flex-1 overflow-y-auto pt-24 pb-32 px-6 scroll-smooth" ref={scrollRef}>
-            <div className="relative flex flex-col items-center gap-12">
-                {/* Dashed Path Line */}
-                <div className="absolute top-0 bottom-0 w-2 border-l-4 border-dashed border-gray-700 left-1/2 -translate-x-1/2 z-0"></div>
-
-                {LEVELS.map((level, index) => {
-                    const isLocked = level.id > unlockedLevelId;
-                    const isCurrent = level.id === unlockedLevelId;
-                    const isCompleted = level.id < unlockedLevelId;
-
-                    return (
-                        <div key={level.id} id={`level-${level.id}`} className={`relative z-10 w-full flex ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                            
-                            {/* Connector Line to center */}
-                            <div className={`absolute top-1/2 w-1/2 h-1 ${index % 2 === 0 ? 'right-0' : 'left-0'} ${isLocked ? 'bg-gray-800' : 'bg-orange-500/50'} -z-10`}></div>
-
-                            <button
-                                disabled={isLocked}
-                                onClick={() => startLevel(level.id)}
-                                className={`w-[85%] relative group transition-all duration-300
-                                    ${isLocked ? 'opacity-50 grayscale scale-95' : 'hover:scale-105'}
-                                    ${isCurrent ? 'scale-105 ring-4 ring-orange-400 ring-offset-4 ring-offset-slate-900' : ''}
-                                `}
-                            >
-                                <div className={`p-4 rounded-2xl border-2 shadow-xl text-left relative overflow-hidden
-                                     ${isLocked ? 'bg-gray-800 border-gray-700' : 'bg-gradient-to-br from-slate-700 to-slate-800 border-white/20'}
-                                `}>
-                                    <div className="flex justify-between items-start mb-2">
-                                        <div className="bg-black/40 px-2 py-1 rounded text-xs text-gray-400 font-mono">
-                                            R{level.id}
-                                        </div>
-                                        <div className="text-2xl">{level.flag}</div>
-                                    </div>
-                                    
-                                    <h3 className={`text-lg font-bold mb-1 ${isLocked ? 'text-gray-500' : 'text-white'}`}>
-                                        {level.name}
-                                    </h3>
-                                    <p className="text-xs text-gray-400 truncate">{level.location}</p>
-
-                                    {isCompleted && (
-                                        <div className="absolute top-2 right-2 text-yellow-400 text-xl drop-shadow-lg">🏆</div>
-                                    )}
-                                    {isCurrent && (
-                                        <div className="absolute -right-2 -top-2 w-4 h-4 bg-red-500 rounded-full animate-ping"></div>
-                                    )}
-                                </div>
-                            </button>
-                        </div>
-                    );
-                })}
+        {/* 卷轴容器 */}
+        <div className="relative w-full h-screen pt-20 pb-8 overflow-x-auto overflow-y-hidden" ref={scrollRef}>
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                {/* 左侧卷轴杆 */}
+                <div className="absolute left-0 top-20 bottom-8 w-8 bg-gradient-to-r from-emerald-800 via-emerald-700 to-emerald-600 rounded-r-full shadow-2xl border-r-4 border-emerald-900/50">
+                    <div className="absolute inset-y-0 left-0 w-2 bg-gradient-to-b from-emerald-900/50 via-transparent to-emerald-900/50"></div>
+                    <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-6 h-20 bg-amber-900/30 rounded-full"></div>
+                </div>
                 
-                {/* Finale Marker */}
-                <div className="relative z-10 bg-gradient-to-b from-yellow-400 to-orange-600 p-6 rounded-full border-4 border-white shadow-[0_0_50px_rgba(255,215,0,0.5)]">
-                    <span className="text-4xl">🏁</span>
+                {/* 右侧卷轴杆 */}
+                <div className="absolute right-0 top-20 bottom-8 w-8 bg-gradient-to-l from-emerald-800 via-emerald-700 to-emerald-600 rounded-l-full shadow-2xl border-l-4 border-emerald-900/50">
+                    <div className="absolute inset-y-0 right-0 w-2 bg-gradient-to-b from-emerald-900/50 via-transparent to-emerald-900/50"></div>
+                    <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-6 h-20 bg-amber-900/30 rounded-full"></div>
                 </div>
             </div>
+
+            {/* 赛道卷轴内容 */}
+            <div className="relative min-w-max h-full px-16 py-8 flex items-center">
+                {/* 赛道背景装饰 */}
+                <svg className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none" style={{ minWidth: `${LEVELS.length * 180}px` }}>
+                    {/* 赛道路径曲线 */}
+                    <path 
+                        d={`M 100 ${window.innerHeight / 2} ${LEVELS.map((_, i) => {
+                            const x = 200 + i * 180;
+                            const y = window.innerHeight / 2 + Math.sin(i * 0.5) * 80;
+                            return `L ${x} ${y}`;
+                        }).join(' ')}`}
+                        stroke="url(#roadGradient)"
+                        strokeWidth="60"
+                        fill="none"
+                        strokeLinecap="round"
+                    />
+                    <defs>
+                        <linearGradient id="roadGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="#d97706" stopOpacity="0.3" />
+                            <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.5" />
+                            <stop offset="100%" stopColor="#d97706" stopOpacity="0.3" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                {/* 关卡节点 */}
+                <div className="relative flex items-center gap-6" style={{ minWidth: `${LEVELS.length * 180}px` }}>
+                    {LEVELS.map((level, index) => {
+                        const isLocked = level.id > unlockedLevelId;
+                        const isCurrent = level.id === unlockedLevelId;
+                        const isCompleted = level.id < unlockedLevelId;
+                        const yOffset = Math.sin(index * 0.5) * 80;
+
+                        return (
+                            <div key={level.id} id={`level-${level.id}`} className="relative flex flex-col items-center" style={{ marginTop: `${yOffset}px` }}>
+                                {/* 连接线（祥云效果） */}
+                                {index < LEVELS.length - 1 && (
+                                    <div className={`absolute left-full top-1/2 -translate-y-1/2 w-6 h-1 ${isLocked ? 'bg-gray-400' : 'bg-gradient-to-r from-orange-400 to-yellow-400'}`}>
+                                        <div className={`absolute top-1/2 -translate-y-1/2 left-0 w-full h-3 blur-sm ${isLocked ? 'bg-gray-400/50' : 'bg-orange-400/50'}`}></div>
+                                    </div>
+                                )}
+
+                                {/* 关卡按钮 */}
+                                <button
+                                    disabled={isLocked}
+                                    onClick={() => startLevel(level.id)}
+                                    className={`relative group transition-all duration-500 ${isLocked ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                                >
+                                    {/* 外圈光晕 */}
+                                    {isCurrent && (
+                                        <div className="absolute -inset-4 bg-gradient-to-r from-orange-400 to-red-500 rounded-full blur-xl opacity-60 animate-pulse"></div>
+                                    )}
+                                    
+                                    {/* 关卡圆形容器 */}
+                                    <div className={`relative w-28 h-28 rounded-full border-4 overflow-hidden transition-all duration-300
+                                        ${isLocked ? 'border-gray-500 bg-gray-700 scale-90 grayscale' : 
+                                          isCurrent ? 'border-orange-400 bg-gradient-to-br from-orange-300 to-red-400 shadow-[0_0_30px_rgba(251,146,60,0.8)] scale-110' :
+                                          isCompleted ? 'border-yellow-400 bg-gradient-to-br from-yellow-300 to-orange-400 shadow-lg scale-100' :
+                                          'border-orange-300 bg-gradient-to-br from-orange-200 to-orange-300 scale-100'}
+                                        ${!isLocked && 'hover:scale-115 hover:shadow-2xl'}
+                                    `}>
+                                        {/* 关卡背景图案 */}
+                                        <div className="absolute inset-0 bg-black/10">
+                                            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                                        </div>
+                                        
+                                        {/* 关卡内容 */}
+                                        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-2">
+                                            {/* 国旗 */}
+                                            <div className="text-4xl mb-1 drop-shadow-lg">{level.flag}</div>
+                                            
+                                            {/* 关卡编号 */}
+                                            <div className={`text-xs font-mono font-bold px-2 py-0.5 rounded-full ${isLocked ? 'bg-gray-600 text-gray-300' : 'bg-black/30 text-white'}`}>
+                                                R{level.id}
+                                            </div>
+                                            
+                                            {/* 完成标记 */}
+                                            {isCompleted && (
+                                                <div className="absolute -top-2 -right-2 text-2xl drop-shadow-lg animate-bounce">
+                                                    🏆
+                                                </div>
+                                            )}
+                                            
+                                            {/* 锁定标记 */}
+                                            {isLocked && (
+                                                <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                                                    <span className="text-3xl">🔒</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                    
+                                    {/* 关卡名称标签 */}
+                                    <div className={`mt-3 px-4 py-2 rounded-lg shadow-lg text-center transition-all duration-300 ${
+                                        isLocked ? 'bg-gray-600/80 text-gray-300' :
+                                        isCurrent ? 'bg-orange-500 text-white scale-105' :
+                                        'bg-white/90 text-gray-800'
+                                    } ${!isLocked && 'group-hover:scale-105'}`}>
+                                        <div className="font-racing font-bold text-sm whitespace-nowrap">{level.name}</div>
+                                        <div className="text-xs opacity-70 truncate max-w-[140px]">{level.location}</div>
+                                    </div>
+                                </button>
+                            </div>
+                        );
+                    })}
+                    
+                    {/* 终点标记 */}
+                    <div className="flex flex-col items-center ml-12">
+                        <div className="relative">
+                            <div className="absolute -inset-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-full blur-2xl opacity-50 animate-pulse"></div>
+                            <div className="relative w-32 h-32 bg-gradient-to-br from-yellow-300 via-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-2xl border-4 border-white">
+                                <span className="text-6xl drop-shadow-lg">🏁</span>
+                            </div>
+                        </div>
+                        <div className="mt-4 px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-xl">
+                            <div className="font-racing font-bold text-white text-lg">赛季终点</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* 底部提示 */}
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-xl">
+            <p className="text-white/80 text-sm flex items-center gap-2">
+                <span className="text-orange-400">←→</span> 滑动查看所有分站
+            </p>
         </div>
     </div>
   );
