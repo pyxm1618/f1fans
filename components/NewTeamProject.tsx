@@ -302,7 +302,7 @@ const NewTeamProject: React.FC = () => {
                  <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
                     <div className="relative w-48 h-48 bg-white rounded-lg flex items-center justify-center p-2 shadow-2xl overflow-hidden">
-                         <img src={groupQrSrc} alt="凤凰计划群聊二维码" className="w-full h-full object-cover" />
+                         <img src={groupQrSrc} alt="凤凰计划群聊二维码" className="w-full h-full object-cover" loading="lazy" />
                          {/* Scan Line Overlay */}
                          <div className="absolute top-0 w-full h-1 bg-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.5)] animate-[scan_2s_linear_infinite]"></div>
                     </div>
@@ -436,7 +436,7 @@ const NewTeamProject: React.FC = () => {
                         <div className="relative group">
                             <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-400 rounded-xl blur opacity-30 group-hover:opacity-80 transition"></div>
                             <div className="relative w-48 h-48 bg-white rounded-xl flex items-center justify-center p-2 overflow-hidden">
-                                <img src={sponsorQrSrc} alt="赞助洽谈二维码" className="w-full h-full object-cover" />
+                                <img src={sponsorQrSrc} alt="赞助洽谈二维码" className="w-full h-full object-cover" loading="lazy" />
                                 <div className="absolute top-0 w-full h-1 bg-emerald-500/60 animate-[scan_2s_linear_infinite]"></div>
                             </div>
                         </div>

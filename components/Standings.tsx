@@ -97,7 +97,7 @@ const Standings: React.FC = () => {
                         {/* Driver Image Background Effect */}
                         {isDriver && d?.headshotUrl && (
                             <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-white/20 shadow-lg relative z-10 bg-slate-700">
-                                <img src={d.headshotUrl} alt={d.name} className="w-full h-full object-cover" />
+                                <img src={d.headshotUrl} alt={d.name} className="w-full h-full object-cover" loading="lazy" />
                             </div>
                         )}
                         {!isDriver && (
@@ -211,7 +211,7 @@ const Standings: React.FC = () => {
                                                 {/* Driver Photo */}
                                                 <div className="w-32 h-32 bg-slate-700 rounded-full border-4 shadow-xl overflow-hidden flex-shrink-0" style={{ borderColor: d?.teamColor }}>
                                                     {d?.headshotUrl ? (
-                                                        <img src={d.headshotUrl} alt={d.name} className="w-full h-full object-cover" />
+                                                        <img src={d.headshotUrl} alt={d.name} className="w-full h-full object-cover" loading="lazy" />
                                                     ) : (
                                                         <User className="w-full h-full p-6 text-slate-500" />
                                                     )}
