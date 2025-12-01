@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Timer, TrendingUp, Play, Share2, Award, Zap, Activity, Droplets, Flame, BarChart3, RotateCcw, AlertCircle } from 'lucide-react';
+import GameApp from '../game/App';
 
 const VOTE_OPTIONS = [
   { id: 1, label: '小黄鸭泡泡浴', color: 'bg-yellow-500' },
@@ -244,127 +245,6 @@ const VotingSystem = () => {
   );
 };
 
-// --- SUBCOMPONENT: MINI GAME ---
-const ShowerGame = () => {
-    const [gameState, setGameState] = useState<'IDLE' | 'PLAYING' | 'GAMEOVER'>('IDLE');
-    const [score, setScore] = useState(0);
-    const [timeLeft, setTimeLeft] = useState(15);
-    const [items, setItems] = useState<{id: number, x: number, y: number, type: 'SOAP' | 'DUCK'}[]>([]);
-    
-    // Game Loop
-    useEffect(() => {
-        let spawner: ReturnType<typeof setInterval>;
-        let timer: ReturnType<typeof setInterval>;
-
-        if (gameState === 'PLAYING') {
-            timer = setInterval(() => {
-                setTimeLeft(prev => {
-                    if (prev <= 1) {
-                        setGameState('GAMEOVER');
-                        return 0;
-                    }
-                    return prev - 1;
-                });
-            }, 1000);
-
-            spawner = setInterval(() => {
-                setItems(prev => [
-                    ...prev, 
-                    { 
-                        id: Date.now(), 
-                        x: Math.random() * 80 + 10, 
-                        y: 100, 
-                        type: Math.random() > 0.3 ? 'SOAP' : 'DUCK' 
-                    }
-                ]);
-            }, 600);
-        }
-
-        return () => {
-            clearInterval(timer);
-            clearInterval(spawner);
-        };
-    }, [gameState]);
-
-    const handleItemClick = (id: number, type: 'SOAP' | 'DUCK') => {
-        setItems(prev => prev.filter(i => i.id !== id));
-        if (type === 'SOAP') {
-            setScore(s => s + 10); // Catch soap = good (don't drop it!)
-        } else {
-            setScore(s => s + 50); // Duck = Bonus
-        }
-    };
-
-    const startGame = () => {
-        setScore(0);
-        setTimeLeft(15);
-        setItems([]);
-        setGameState('PLAYING');
-    };
-
-    return (
-        <div className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative h-[400px]">
-            {/* Header */}
-            <div className="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-20 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
-                <div className="flex items-center gap-2">
-                    <Award className="text-yellow-500" />
-                    <span className="font-racing text-2xl text-white">{score}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                    <Timer className="text-red-500" />
-                    <span className="font-mono text-xl text-white">00:{timeLeft.toString().padStart(2, '0')}</span>
-                </div>
-            </div>
-
-            {/* Game Area */}
-            <div className="w-full h-full relative bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-slate-800">
-                
-                {gameState === 'IDLE' && (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm z-30">
-                        <Droplets size={60} className="text-cyan-400 mb-4 animate-bounce" />
-                        <h3 className="text-3xl font-racing font-bold text-white mb-2">洗澡大奖赛</h3>
-                        <p className="text-slate-300 mb-6">点击捡起肥皂和鸭子，手速要快！</p>
-                        <button onClick={startGame} className="px-8 py-3 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg skew-racing transition-transform hover:scale-105">
-                            START GAME
-                        </button>
-                    </div>
-                )}
-
-                {gameState === 'GAMEOVER' && (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm z-30">
-                        <h3 className="text-4xl font-racing font-bold text-white mb-2">FINISH</h3>
-                        <p className="text-xl text-yellow-400 font-mono mb-6">SCORE: {score}</p>
-                        <button onClick={startGame} className="flex items-center gap-2 px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded transition-colors">
-                            <RotateCcw size={16} /> 再来一次
-                        </button>
-                    </div>
-                )}
-
-                {/* Falling Items */}
-                <AnimatePresence>
-                    {items.map(item => (
-                        <motion.button
-                            key={item.id}
-                            initial={{ top: '100%', opacity: 0, scale: 0 }}
-                            animate={{ top: '10%', opacity: 1, scale: 1 }}
-                            exit={{ scale: 1.5, opacity: 0 }}
-                            transition={{ duration: 2, ease: "linear" }}
-                            className="absolute transform -translate-x-1/2"
-                            style={{ left: `${item.x}%` }}
-                            onClick={() => handleItemClick(item.id, item.type)}
-                        >
-                            <div className={`text-4xl drop-shadow-lg cursor-pointer transition-transform active:scale-90 ${item.type === 'DUCK' ? 'animate-pulse' : ''}`}>
-                                {item.type === 'SOAP' ? '🧼' : '🦆'}
-                            </div>
-                        </motion.button>
-                    ))}
-                </AnimatePresence>
-            </div>
-        </div>
-    );
-};
-
-
 // --- MAIN COMPONENT ---
 const YeFeiShowerBet: React.FC = () => {
   return (
@@ -450,12 +330,12 @@ const YeFeiShowerBet: React.FC = () => {
       {/* 3. GAME & INTERACTION SECTION */}
       <section className="py-16 px-4 pb-32">
         <div className="max-w-4xl mx-auto text-center mb-10">
-            <h2 className="text-4xl font-racing font-bold text-white mb-4">洗澡大奖赛 <span className="text-red-600">GP</span></h2>
-            <p className="text-slate-400">在等待赛季结束的同时，先来一场手速对决。</p>
+            <h2 className="text-4xl font-racing font-bold text-white mb-4">拯救飞哥 <span className="text-red-600">2025</span></h2>
+            <p className="text-slate-400">在等待赛季结束的同时，帮助皮亚斯特里赢得冠军，拯救飞哥免于洗澡！</p>
         </div>
 
         <div className="max-w-3xl mx-auto">
-            <ShowerGame />
+            <GameApp />
         </div>
 
         {/* Share Bar - Temporarily hidden */}
