@@ -12,4 +12,4 @@ Disallow: /server/
 Disallow: /*.json$
 
 # Sitemap 位置
-Sitemap: https://www.f1fans.cn/sitemap.xml
+Sitemap: https://f1fans.cn/sitemap.xml
