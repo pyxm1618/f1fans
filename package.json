@@ -5,22 +5,24 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run prerender",
+    "build": "vite build && npm run prerender && npm run verify:prerender",
     "prerender": "tsx scripts/prerender.tsx",
+    "verify:prerender": "tsx scripts/verify-prerender.ts",
     "preview": "vite preview",
     "server": "node server/index.js"
   },
   "dependencies": {
-    "lucide-react": "^0.554.0",
-    "framer-motion": "^12.23.24",
-    "react": "^19.2.0",
     "@google/genai": "^1.30.0",
-    "react-dom": "^19.2.0",
-    "recharts": "^3.5.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.19.2",
-    "node-fetch": "^3.3.2"
+    "framer-motion": "^12.23.24",
+    "lucide-react": "^0.554.0",
+    "node-fetch": "^3.3.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.10.1",
+    "recharts": "^3.5.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

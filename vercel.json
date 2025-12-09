@@ -5,6 +5,22 @@
   "framework": null,
   "rewrites": [
     {
+      "source": "/standings",
+      "destination": "/standings.html"
+    },
+    {
+      "source": "/schedule",
+      "destination": "/schedule.html"
+    },
+    {
+      "source": "/phoenix",
+      "destination": "/phoenix.html"
+    },
+    {
+      "source": "/shower-bet",
+      "destination": "/shower-bet.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
