@@ -11,7 +11,7 @@ const NavBar: React.FC = () => {
     { path: '/shower-bet', label: '洗澡赌约', icon: Bath, highlight: true },
     { path: '/phoenix', label: '凤凰计划', icon: Flame },
     { path: '/standings', label: '积分榜', icon: Trophy },
-    // { path: '/schedule', label: '赛程', icon: Calendar },  // 暂时隐藏
+    { path: '/schedule', label: '赛程', icon: Calendar },
   ];
 
   return (

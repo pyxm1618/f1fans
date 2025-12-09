@@ -7,6 +7,7 @@ import StandingsPage from './pages/StandingsPage';
 import SchedulePage from './pages/SchedulePage';
 import PhoenixPage from './pages/PhoenixPage';
 import ShowerBetPage from './pages/ShowerBetPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const AnimatedRoutes: React.FC = () => {
@@ -28,6 +29,7 @@ const AnimatedRoutes: React.FC = () => {
           <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/phoenix" element={<PhoenixPage />} />
           <Route path="/shower-bet" element={<ShowerBetPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </motion.div>
     </AnimatePresence>

@@ -50,6 +50,36 @@ function updateMetaTags(html: string, seoKey: string): string {
     `<meta property="og:url" content="https://f1fans.cn${config.canonicalPath}" />`
   );
   
+  // 添加或更新 og:image
+  if (config.ogImage) {
+    if (result.includes('<meta property="og:image"')) {
+      result = result.replace(
+        /<meta property="og:image" content=".*?".*?\/>/,
+        `<meta property="og:image" content="${config.ogImage}" />`
+      );
+    } else {
+      // 在 og:url 后插入 og:image
+      result = result.replace(
+        /(<meta property="og:url"[^>]*\/>)/,
+        `$1\n    <meta property="og:image" content="${config.ogImage}" />`
+      );
+    }
+    
+    // 添加或更新 twitter:image
+    if (result.includes('<meta name="twitter:image"')) {
+      result = result.replace(
+        /<meta name="twitter:image" content=".*?".*?\/>/,
+        `<meta name="twitter:image" content="${config.ogImage}" />`
+      );
+    } else {
+      // 在 twitter:description 后插入 twitter:image
+      result = result.replace(
+        /(<meta name="twitter:description"[^>]*\/>)/,
+        `$1\n    <meta name="twitter:image" content="${config.ogImage}" />`
+      );
+    }
+  }
+  
   result = result.replace(
     /<link rel="canonical" href=".*?".*?\/>/,
     `<link rel="canonical" href="https://f1fans.cn${config.canonicalPath}" />`
