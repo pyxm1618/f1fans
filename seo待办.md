@@ -1,16 +1,47 @@
 # f1fans.cn SEO 优化待办清单
 
-> **更新日期**: 2025-12-08  
-> **当前状态**: 阶段一已完成 ✅  
-> **下一目标**: 向搜索引擎提交 + 路由改造
+> **更新日期**: 2025-12-09  
+> **当前状态**: 阶段二已完成 ✅  
+> **下一目标**: 搜索引擎提交 + 阶段三优化
+
+---
+
+## 🔥 当前待办（Top 5 优先级）
+
+### 1. 百度站长平台提交 Sitemap
+- [ ] 登录 [百度站长平台](https://ziyuan.baidu.com/)
+- [ ] 提交 sitemap: `https://f1fans.cn/sitemap.xml`
+- [ ] 使用"URL 提交"工具提交所有 5 个页面
+
+### 2. Google Search Console 提交 Sitemap
+- [ ] 登录 [Google Search Console](https://search.google.com/search-console)
+- [ ] 提交 sitemap: `https://f1fans.cn/sitemap.xml`
+- [ ] 使用"URL 检查"工具请求索引所有页面
+
+### 3. Bing Webmaster Tools 提交 Sitemap
+- [ ] 登录 [Bing Webmaster Tools](https://www.bing.com/webmasters)
+- [ ] 提交 sitemap: `https://f1fans.cn/sitemap.xml`
+- [ ] 提交所有 URL
+
+### 4. 阶段三：添加结构化数据（JSON-LD Schema）
+- [ ] 首页添加 Organization + WebSite Schema
+- [ ] 积分榜添加 SportsEvent + Person Schema
+- [ ] 凤凰计划添加 Article Schema
+- [ ] 验证结构化数据：[Rich Results Test](https://search.google.com/test/rich-results)
+
+### 5. 阶段四：性能优化（Core Web Vitals）
+- [ ] 运行 PageSpeed Insights 测试
+- [ ] 优化首屏 LCP < 2.5s
+- [ ] 代码分割，减小主 bundle 大小（目标 < 200KB）
+- [ ] 添加图片 width/height 属性，减少 CLS
 
 ---
 
 ## 📊 进度总览
 
 - ✅ **阶段一**: 紧急修复（预渲染、域名统一、sitemap修复）- **已完成**
-- ⏳ **阶段二**: 架构优化（路由改造）- 进行中
-- ⏸️ **阶段三**: 内容与结构优化 - 待开始
+- ✅ **阶段二**: 架构优化（路由改造）- **已完成**
+- ⏳ **阶段三**: 内容与结构优化 - 进行中
 - ⏸️ **阶段四**: 性能与技术优化 - 待开始
 - ⏸️ **阶段五**: 内容建设 - 待开始
 - ⏸️ **阶段六**: 外链建设 - 待开始
@@ -128,7 +159,7 @@ public/
 
 ---
 
-## 🚀 阶段二：架构优化（1-2周）
+## 🚀 阶段二：架构优化（✅ 已完成 - 2025-12-09）
 
 ### 2.1 路由改造（详细任务）
 
@@ -139,52 +170,61 @@ npm install --save-dev @types/react-router-dom
 ```
 
 #### 第2步：创建路由结构
-- [ ] 创建 `src/routes/` 目录
-- [ ] 创建页面组件：
-  - [ ] `HomePage.tsx`
-  - [ ] `StandingsPage.tsx`
-  - [ ] `SchedulePage.tsx`
-  - [ ] `PhoenixPage.tsx`
-  - [ ] `ShowerBetPage.tsx`
+- [x] 创建 `pages/` 目录
+- [x] 创建页面组件：
+  - [x] `HomePage.tsx`
+  - [x] `StandingsPage.tsx`
+  - [x] `SchedulePage.tsx`
+  - [x] `PhoenixPage.tsx`
+  - [x] `ShowerBetPage.tsx`
 
 #### 第3步：配置路由
-- [ ] 在 `App.tsx` 中设置 BrowserRouter
-- [ ] 配置路由规则
-- [ ] 添加 404 页面
+- [x] 在 `App.tsx` 中设置 BrowserRouter
+- [x] 配置路由规则
+- [x] 添加页面切换动画（framer-motion）
 
 #### 第4步：SEO 元数据
-- [ ] 创建 `src/utils/seo.ts` 工具函数
-- [ ] 为每个页面配置独立的：
-  - title
-  - description
-  - keywords
-  - og:image
-  - canonical URL
+- [x] 创建 `utils/seo.ts` 工具函数
+- [x] 为每个页面配置独立的：
+  - [x] title
+  - [x] description
+  - [x] keywords
+  - [x] og:title, og:description, og:url
+  - [x] canonical URL
 
 #### 第5步：更新预渲染
-- [ ] 修改 `scripts/prerender.tsx` 支持多路由
-- [ ] 为每个路由生成独立 HTML 文件
-- [ ] 更新 `sitemap.xml` 包含所有路由
+- [x] 修改 `scripts/prerender.tsx` 支持多路由
+- [x] 为每个路由生成独立 HTML 文件（5个）
+- [x] 更新 `sitemap.xml` 包含所有路由
+- [x] 创建 `scripts/verify-prerender.ts` 自动验证脚本
 
 #### 第6步：测试验证
-- [ ] 本地测试所有路由访问
-- [ ] 验证每个页面的 meta 标签
-- [ ] 测试直接访问 URL（不通过导航）
-- [ ] 验证刷新页面不会 404
+- [x] 本地测试所有路由访问
+- [x] 验证每个页面的 meta 标签
+- [x] 测试直接访问 URL（不通过导航）
+- [x] 验证刷新页面不会 404
+- [x] Vercel 部署验证通过
 
 ---
 
-### 2.2 多路由预渲染
+### 2.2 多路由预渲染（✅ 已完成）
 
-**目标**: 为每个路由生成独立的预渲染 HTML
+**目标**: 为每个路由生成独立的预渲染 HTML ✅
 
 **实现方案**:
 ```typescript
 // scripts/prerender.tsx
-const routes = ['/', '/standings', '/schedule', '/phoenix', '/shower-bet'];
+const routes = [
+  { path: '/', filename: 'index.html', seoKey: 'home' },
+  { path: '/standings', filename: 'standings.html', seoKey: 'standings' },
+  { path: '/schedule', filename: 'schedule.html', seoKey: 'schedule' },
+  { path: '/phoenix', filename: 'phoenix.html', seoKey: 'phoenix' },
+  { path: '/shower-bet', filename: 'shower-bet.html', seoKey: 'showerBet' },
+];
 
 for (const route of routes) {
   // 渲染每个路由
+  // 更新 SEO meta 标签
   // 生成对应的 HTML 文件
 }
 ```
@@ -192,11 +232,11 @@ for (const route of routes) {
 **输出文件**:
 ```
 dist/
-├── index.html (首页)
-├── standings.html
-├── schedule.html
-├── phoenix.html
-└── shower-bet.html
+├── index.html (首页, 13.8 KB)
+├── standings.html (8.4 KB)
+├── schedule.html (8.4 KB)
+├── phoenix.html (47.1 KB)
+└── shower-bet.html (21.3 KB)
 ```
 
 **Vercel 配置更新**:
@@ -206,10 +246,13 @@ dist/
     {"source": "/standings", "destination": "/standings.html"},
     {"source": "/schedule", "destination": "/schedule.html"},
     {"source": "/phoenix", "destination": "/phoenix.html"},
-    {"source": "/shower-bet", "destination": "/shower-bet.html"}
+    {"source": "/shower-bet", "destination": "/shower-bet.html"},
+    {"source": "/(.*)", "destination": "/index.html"}
   ]
 }
 ```
+
+**验证结果**: ✅ 所有路由在线上正常工作
 
 ---
 
@@ -503,8 +546,39 @@ curl https://f1fans.cn/robots.txt
 
 | 日期 | 更新内容 |
 |------|---------|
+| 2025-12-09 | ✅ 阶段二完成：多路由架构改造，5个独立页面全部上线 |
 | 2025-12-08 | 创建待办清单，阶段一已完成 |
 
 ---
 
-**下次执行时，从"立即行动"开始！🚀**
+## 🎯 阶段二完成总结（2025-12-09）
+
+**已完成的工作：**
+1. ✅ 安装 react-router-dom 7.10.1
+2. ✅ 创建 SEO 工具函数（utils/seo.ts）
+3. ✅ 创建 5 个独立页面组件（HomePage, StandingsPage, SchedulePage, PhoenixPage, ShowerBetPage）
+4. ✅ 更新 NavBar 使用 React Router Link
+5. ✅ 更新 App.tsx 配置路由系统和页面动画
+6. ✅ 升级预渲染脚本支持多路由（生成 5 个独立 HTML 文件）
+7. ✅ 更新 sitemap.xml 包含所有新页面
+8. ✅ 配置 vercel.json URL 重写规则
+9. ✅ 本地构建测试全部通过
+10. ✅ Vercel 部署验证成功
+
+**验证结果：**
+- ✅ 所有 5 个页面都能独立访问（HTTP 200）
+- ✅ 每个页面都有独立的 SEO meta 标签
+- ✅ 预渲染内容完整（爬虫友好）
+- ✅ 所有 canonical 链接使用 `https://f1fans.cn`
+- ✅ Sitemap 包含所有页面
+
+**线上地址：**
+- https://f1fans.cn/ (首页，13.5 KB)
+- https://f1fans.cn/standings (积分榜，8.2 KB)
+- https://f1fans.cn/schedule (赛程表)
+- https://f1fans.cn/phoenix (凤凰计划，46 KB)
+- https://f1fans.cn/shower-bet (洗澡赌约，21 KB)
+
+---
+
+**下次执行时，从"当前待办 Top 5"开始！🚀**
