@@ -64,7 +64,7 @@ export const useSEO = (configKey: string) => {
     if (!config) return;
 
     document.title = config.title;
-    
+
     const metaTags: Record<string, string> = {
       description: config.description,
       keywords: config.keywords,
@@ -88,7 +88,7 @@ export const useSEO = (configKey: string) => {
     Object.entries(metaTags).forEach(([name, content]) => {
       const property = name.startsWith('og:') ? 'property' : 'name';
       let element = document.querySelector(`meta[${property}="${name}"]`) as HTMLMetaElement;
-      
+
       if (element) {
         element.content = content;
       } else {

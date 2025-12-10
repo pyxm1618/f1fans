@@ -36,9 +36,12 @@ const AnimatedRoutes: React.FC = () => {
   );
 };
 
+import StructuredData from './components/StructuredData';
+
 const App: React.FC = () => {
   return (
     <div className="bg-slate-900 min-h-screen text-white overflow-x-hidden selection:bg-red-500 selection:text-white">
+      <StructuredData />
       <NavBar />
       <AnimatedRoutes />
     </div>

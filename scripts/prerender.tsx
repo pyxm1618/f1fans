@@ -12,6 +12,7 @@ const routes = [
   { path: '/schedule', filename: 'schedule.html', seoKey: 'schedule' },
   { path: '/phoenix', filename: 'phoenix.html', seoKey: 'phoenix' },
   { path: '/shower-bet', filename: 'shower-bet.html', seoKey: 'showerBet' },
+  { path: '/404', filename: '404.html', seoKey: 'notFound' },
 ];
 
 function updateMetaTags(html: string, seoKey: string): string {

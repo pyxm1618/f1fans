@@ -14,6 +14,7 @@ const routes: RouteConfig[] = [
   { filename: 'schedule.html', expectedCanonical: 'https://f1fans.cn/schedule', minSize: 8_000, displayName: '赛程' },
   { filename: 'phoenix.html', expectedCanonical: 'https://f1fans.cn/phoenix', minSize: 40_000, displayName: '凤凰计划' },
   { filename: 'shower-bet.html', expectedCanonical: 'https://f1fans.cn/shower-bet', minSize: 20_000, displayName: '洗澡赌约' },
+  { filename: '404.html', expectedCanonical: 'https://f1fans.cn/404', minSize: 5_000, displayName: '404页面' },
 ];
 
 async function verifyFile(route: RouteConfig): Promise<void> {

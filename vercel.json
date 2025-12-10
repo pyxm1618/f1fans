@@ -21,8 +21,22 @@
       "destination": "/shower-bet.html"
     },
     {
+      "source": "/404",
+      "destination": "/404.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
+    }
+  ],
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
+      "dest": "/404.html"
     }
   ],
   "headers": [
