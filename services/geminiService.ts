@@ -2,10 +2,17 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { QuizQuestion } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const getAI = () => {
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+    throw new Error("API_KEY not found in environment variables");
+  }
+  return new GoogleGenAI({ apiKey });
+};
 
 export const generateQuizQuestion = async (): Promise<QuizQuestion> => {
   try {
+    const ai = getAI();
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: "Generate a challenging Formula 1 trivia question in Chinese (Simplified). Return structured JSON. The question should be about F1 history, cars, or drivers.",
@@ -15,8 +22,8 @@ export const generateQuizQuestion = async (): Promise<QuizQuestion> => {
           type: Type.OBJECT,
           properties: {
             question: { type: Type.STRING, description: "The question text in Chinese" },
-            options: { 
-              type: Type.ARRAY, 
+            options: {
+              type: Type.ARRAY,
               items: { type: Type.STRING },
               description: "4 options in Chinese"
             },
@@ -46,6 +53,7 @@ export const generateQuizQuestion = async (): Promise<QuizQuestion> => {
 
 export const getYeFeiPanicCommentary = async (piastriPoints: number): Promise<string> => {
   try {
+    const ai = getAI();
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: `你正在扮演中国著名F1解说员“叶飞”。你打赌如果皮亚斯特里(Oscar Piastri)今年拿不到冠军，你就全网直播洗澡。
