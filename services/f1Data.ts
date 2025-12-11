@@ -42,26 +42,26 @@ const normalizeFamilyName = (name?: string): string => {
 };
 
 const driverHeadshots: Record<string, string> = {
-  verstappen: new URL('../drivers/Max_Verstappen_Red_Bull_Racing.png', import.meta.url).href,
-  norris: new URL('../drivers/Lando_Norris_McLaren.png', import.meta.url).href,
-  leclerc: new URL('../drivers/Charles_Leclerc_Ferrari.png', import.meta.url).href,
-  piastri: new URL('../drivers/Oscar_Piastri_McLaren.png', import.meta.url).href,
-  hamilton: new URL('../drivers/Lewis_Hamilton_Ferrari.png', import.meta.url).href,
-  sainz: new URL('../drivers/Carlos_Sainz_Williams.png', import.meta.url).href,
-  russell: new URL('../drivers/George_Russell_Mercedes.png', import.meta.url).href,
-  alonso: new URL('../drivers/Fernando_Alonso_Aston_Martin.png', import.meta.url).href,
-  stroll: new URL('../drivers/Lance_Stroll_Aston_Martin.png', import.meta.url).href,
-  tsunoda: new URL('../drivers/yuki_tsunoda_Red_Bull.png', import.meta.url).href,
-  albon: new URL('../drivers/Alexander_Albon_Williams.png', import.meta.url).href,
-  hulkenberg: new URL('../drivers/Nico_Hulkenberg_Kick_Sauber.png', import.meta.url).href,
-  gasly: new URL('../drivers/Pierre_Gasly_Alpine.png', import.meta.url).href,
-  ocon: new URL('../drivers/Esteban_Ocon_Haas.png', import.meta.url).href,
-  colapinto: new URL('../drivers/Franco_Colapinto_Alpine.png', import.meta.url).href,
-  bortoleto: new URL('../drivers/Gabriel_Bortoleto_Kick_Sauber.png', import.meta.url).href,
-  doohan: new URL('../drivers/Jack_Doohan_Alpine.png', import.meta.url).href,
-  antonelli: new URL('../drivers/Kimi_Antonelli_Mercedes.png', import.meta.url).href,
-  bearman: new URL('../drivers/Oliver_Bearman_Haas.png', import.meta.url).href,
-  lawson: new URL('../drivers/Liam_Lawson_Racing_Bulls.png', import.meta.url).href
+  verstappen: new URL('../drivers/Max_Verstappen_Red_Bull_Racing.webp', import.meta.url).href,
+  norris: new URL('../drivers/Lando_Norris_McLaren.webp', import.meta.url).href,
+  leclerc: new URL('../drivers/Charles_Leclerc_Ferrari.webp', import.meta.url).href,
+  piastri: new URL('../drivers/Oscar_Piastri_McLaren.webp', import.meta.url).href,
+  hamilton: new URL('../drivers/Lewis_Hamilton_Ferrari.webp', import.meta.url).href,
+  sainz: new URL('../drivers/Carlos_Sainz_Williams.webp', import.meta.url).href,
+  russell: new URL('../drivers/George_Russell_Mercedes.webp', import.meta.url).href,
+  alonso: new URL('../drivers/Fernando_Alonso_Aston_Martin.webp', import.meta.url).href,
+  stroll: new URL('../drivers/Lance_Stroll_Aston_Martin.webp', import.meta.url).href,
+  tsunoda: new URL('../drivers/yuki_tsunoda_Red_Bull.webp', import.meta.url).href,
+  albon: new URL('../drivers/Alexander_Albon_Williams.webp', import.meta.url).href,
+  hulkenberg: new URL('../drivers/Nico_Hulkenberg_Kick_Sauber.webp', import.meta.url).href,
+  gasly: new URL('../drivers/Pierre_Gasly_Alpine.webp', import.meta.url).href,
+  ocon: new URL('../drivers/Esteban_Ocon_Haas.webp', import.meta.url).href,
+  colapinto: new URL('../drivers/Franco_Colapinto_Alpine.webp', import.meta.url).href,
+  bortoleto: new URL('../drivers/Gabriel_Bortoleto_Kick_Sauber.webp', import.meta.url).href,
+  doohan: new URL('../drivers/Jack_Doohan_Alpine.webp', import.meta.url).href,
+  antonelli: new URL('../drivers/Kimi_Antonelli_Mercedes.webp', import.meta.url).href,
+  bearman: new URL('../drivers/Oliver_Bearman_Haas.webp', import.meta.url).href,
+  lawson: new URL('../drivers/Liam_Lawson_Racing_Bulls.webp', import.meta.url).href
 };
 
 const getLocalHeadshot = (familyName: string): string | undefined => {
