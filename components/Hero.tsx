@@ -10,7 +10,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ setTab }) => {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[url('/assets/hero-poster.jpg')] bg-cover bg-center">
       {/* --- VIDEO BACKGROUND --- */}
       <div className="absolute inset-0 z-0">
         <video
@@ -19,7 +19,7 @@ const Hero: React.FC<HeroProps> = ({ setTab }) => {
           muted
           playsInline
           poster="/assets/hero-poster.jpg"
-          className="w-full h-full object-cover opacity-60"
+          className="hidden md:block w-full h-full object-cover opacity-60"
         >
           <source src="/assets/hero-loop.webm" type="video/webm" />
         </video>
