@@ -3,10 +3,32 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// Access environment variables securely
-// Note: These must be added to your Vercel Project Settings
-const mcpSupabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const mcpSupabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Safe environment variable retrieval for both Browser (Vite) and Node (Prerender)
+const getEnvVar = (key: string) => {
+    // 1. Try Vite's import.meta.env (Browser)
+    try {
+        // @ts-ignore
+        if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env[key]) {
+            // @ts-ignore
+            return import.meta.env[key];
+        }
+    } catch (e) {
+        // Ignore
+    }
+
+    // 2. Try Node's process.env (Server/Prerender)
+    try {
+        if (typeof process !== 'undefined' && process.env && process.env[key]) {
+            return process.env[key];
+        }
+    } catch (e) {
+        // Ignore
+    }
+    return '';
+};
+
+const mcpSupabaseUrl = getEnvVar('VITE_SUPABASE_URL');
+const mcpSupabaseAnonKey = getEnvVar('VITE_SUPABASE_ANON_KEY');
 
 // Warn if keys are missing (for local dev safety)
 if (!mcpSupabaseUrl || !mcpSupabaseAnonKey) {
