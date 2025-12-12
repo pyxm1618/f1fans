@@ -17,14 +17,14 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
   home: {
     title: '极速F1 - F1车迷社区 | 2025赛季积分榜、赛程、凤凰计划',
     description: '极速F1是专业的F1赛车车迷社区，提供2025赛季最新积分榜、赛程表、车手排名、叶飞洗澡挑战。关注凤凰计划FH-1赛车，打造中国第12支F1车队。',
-    keywords: 'F1,一级方程式,F1车迷,F1积分榜,F1赛程,凤凰计划,FH-1,叶飞,极速F1,F1中国,赛车,车手排名',
+    keywords: 'F1,一级方程式,F1车迷,F1积分榜,F1赛程,凤凰计划,FH-1,叶飞,极速F1,F1中国,赛车,车手排名,F1 2026新规,中国F1车队,奥迪F1,F1社区',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalPath: '/',
   },
   standings: {
     title: 'F1积分榜 - 2025赛季车手与车队排名 | 极速F1',
     description: '实时更新2025赛季F1车手积分榜和车队积分榜。查看维斯塔潘、汉密尔顿、勒克莱尔等顶级车手的最新排名，关注红牛、法拉利、梅赛德斯车队竞争态势。',
-    keywords: 'F1积分榜,车手积分榜,车队积分榜,F1排名,维斯塔潘,汉密尔顿,勒克莱尔,2025赛季F1,红牛车队,法拉利车队',
+    keywords: 'F1积分榜,车手积分榜,车队积分榜,F1排名,维斯塔潘,汉密尔顿,勒克莱尔,2025赛季F1,红牛车队,法拉利车队,F1 2026车手,兰多·诺里斯,皮亚斯特里,迈凯伦,新秀车手',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalPath: '/standings',
   },
@@ -38,7 +38,7 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
   phoenix: {
     title: '凤凰计划 - 打造中国第12支F1车队 | 极速F1',
     description: '凤凰计划(Phoenix Project)旨在打造中国第一支F1车队。了解FH-1赛车研发进展、技术参数、叶飞领衔的中国工程师团队如何挑战世界顶级赛车竞技。',
-    keywords: '凤凰计划,FH-1,中国F1车队,叶飞,F1赛车研发,中国赛车,Phoenix Project,F1技术,赛车工程',
+    keywords: '凤凰计划,FH-1,中国F1车队,叶飞,F1赛车研发,中国赛车,Phoenix Project,F1技术,赛车工程,F1国产赛车,中国赛车投资,F1车队招募',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalPath: '/phoenix',
   },

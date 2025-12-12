@@ -8,9 +8,27 @@ interface HeroProps {
   setTab: (tab: Tab) => void;
 }
 
+import AuthModal from './AuthModal';
+import { User } from 'lucide-react';
+
 const Hero: React.FC<HeroProps> = ({ setTab }) => {
+  const [isAuthOpen, setIsAuthOpen] = React.useState(false);
+
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[url('/assets/hero-poster.jpg')] bg-cover bg-center">
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+
+      {/* Top Right Login Button */}
+      <div className="absolute top-0 right-0 p-6 z-50">
+        <button
+          onClick={() => setIsAuthOpen(true)}
+          className="flex items-center gap-2 bg-slate-900/80 hover:bg-red-600 backdrop-blur text-white px-4 py-2 rounded-full border border-white/10 transition-colors font-mono text-sm"
+        >
+          <User size={16} />
+          <span>登录 / 注册</span>
+        </button>
+      </div>
+
       {/* --- VIDEO BACKGROUND --- */}
       <div className="absolute inset-0 z-0">
         <video
